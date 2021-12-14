@@ -28,9 +28,10 @@ build() {
 
 package() {
   cd "${srcdir}/${_pkgbase}"
-  make DESTDIR="$pkgdir/" install
   install -d "${pkgdir}/etc/systemd/system/iio-sensor-proxy.service.d/"
   install -Dm 644 10-hadess-sensorfw-proxy.conf "${pkgdir}/etc/systemd/system/iio-sensor-proxy.service.d/"
+  cd build
+  make DESTDIR="$pkgdir/" install
 }
 
 
